@@ -18,11 +18,10 @@
         "exclude": ["/doc", "/*.json", "/.git", "/*.md"]
     },
     "require": {
-        "php": ">=5.4.0"
+        "php": ">=5.4.0",
+        "bramus/router": "~1.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.0",
-        "phpspec/phpspec": "~2.1"
     },
     "autoload": {
         "classmap": [
