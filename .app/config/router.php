@@ -25,9 +25,13 @@
  */
 
 $router = new Lib\Router;
-$router->respond('get', '/', 'user')
+$router->respond('get', '/', 'home')
         ->respond('get', '/home/index', 'home', 'index') //home/index (only)
         ->respond('get', 'home/index/(.*)', 'home', 'other') //home/index/parms ...
+        ->respond('get','login', 'home', 'login')
+
+//Others examples ...
+
         ->respond('get|post', 'blog(/\d{4}(/\d{2}(/\d{2}(/[a-z0-9_-]+)?)?)?)?', 'blog1') //blog/2015/11/23/titulo_da_materia
         ->respond('get|post', 'blog(/\d{4}(/\d{2}(/\d{2}(.*)?)?)?)?', 'blog2') //blog/2015/11/23/qualquer coisa aqui
         ->respond('get|post', '/user/(\d+)/(\w+)', 'usuarioIdNome', 'index') //user/00234/Nome do cara

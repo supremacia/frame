@@ -22,9 +22,7 @@ button.active {background-image: linear-gradient(to top, #045, #089);
 input[type=checkbox] {width: 20px; vertical-align: middle;}
 
 .login {position:fixed; top:50%; left:50%; width:334px; margin:-150px 0 0 -170px; color:#999;}
-.login h1 b {position:absolute; margin:-18px 0 0 -90px; float: left; font-size: 1.5em; color:#B80;
-             text-shadow: 0 0 2px #000, 5px 3px 20px #111;}
-.login h1 {padding-left: 80px; margin: 0 0 10px 0;color:#045; text-shadow: 2px 2px 5px #000; font-size: 5.7em;}
+.login h1 {margin: 0 0 10px 0;color:#045; text-shadow: 2px 2px 5px #000; font-size: 5.7em;}
 .login input[type=text],
 .login input[type=password],
 .login button {display:inline-block; margin:4px 0 !important; height: 21px;

@@ -30,6 +30,7 @@
 
 namespace Controller;
 use Lib\App;
+use Lib;
 
 /**
  * Description of home
@@ -73,6 +74,21 @@ class Home extends AppController {
 
     function other() {
         exit('<br> -- Controller\Home\other : ' . p($this->params, true));
+    }
+
+    function login(){
+        $key = file_get_contents(CONFIG_PATH . 'keys/public.key');
+        $langPath = $this->_langPath();
+
+        $d = new Lib\Doc('login');
+        $d->val('title', 'Zumbi :: Login')
+                ->jsvar('key', str_replace(array("\r", "\n", '-----BEGIN PUBLIC KEY-----', '-----END PUBLIC KEY-----'), '', $key))
+                ->jsvar('wsUri', 'ws://127.0.0.1:8080')
+                ->insertStyles(['reset', 'style'])
+                ->insertScripts([$langPath . 'msg', 'lib/aes', 'lib/jszip', 'lib/lib', 'lib/rsa', 'lib/jsbn', 'lib/forge', 'lib/xhat', 'main'])
+                ->body($langPath . 'body')
+                ->render()
+                ->send();
     }
 
 }
