@@ -1,0 +1,141 @@
+body {color:#999; font-weight: 100; background: #000; font-family: Helvetica, sans-serif;}
+b {font-weight: 800;}
+p {margin:15px 0;}
+h1 {display:block; margin:0;}
+h2 {font-size: 2.5em;}
+h3 {font-size: 1.3em;}
+h1, h2, h3, h4, h5, h6 {color:#039;}
+label{ padding:0; display:block; margin:10px 0 1px 2px; font-size: .9em;}
+
+.container { margin: 0; overflow: auto;}
+.footer {position: absolute; display:none;}
+div.alert { box-shadow: 0 10px 30px #111;}
+
+input,
+button,
+select { padding: 10px 10px; font-size: 1.2em; margin:0 !important; vertical-align: top; background-image: linear-gradient(to bottom, #99A, #FFF);}
+button { padding: 8px 14px; border:none; cursor: pointer;}
+button:hover,
+button:active,
+button.active {background-image: linear-gradient(to top, #045, #089);
+                color:#FFF; box-shadow: 0 0 8px #000;}
+input[type=checkbox] {width: 20px; vertical-align: middle;}
+
+.login {position:fixed; top:50%; left:50%; width:334px; margin:-150px 0 0 -170px; color:#999;}
+.login h1 b {position:absolute; margin:-18px 0 0 -90px; float: left; font-size: 1.5em; color:#B80;
+             text-shadow: 0 0 2px #000, 5px 3px 20px #111;}
+.login h1 {padding-left: 80px; margin: 0 0 10px 0;color:#045; text-shadow: 2px 2px 5px #000; font-size: 5.7em;}
+.login input[type=text],
+.login input[type=password],
+.login button {display:inline-block; margin:4px 0 !important; height: 21px;
+                box-shadow: 0 2px 4px #111; border-radius:5px; border:1px solid #333;}
+.login button {margin:5px 0 0 8px !important; height: 42px;}
+.login #login,
+.login #password {width: 243px;}
+.login #go,
+.login #cadastro {width: 60px; padding: 5px 0;}
+
+.login #cadastro {display:none;}
+.login #login {width:311px}
+
+.links {display:block;}
+.links span {display:none; padding:3px 0 0 5px; font-size: .95em;}
+.links img { width: 32px; margin:0 5px 0 0; border-radius:50%; box-shadow: 0 1px 1px #222; cursor:pointer; background-color: #333; float:right}
+.links img:hover,
+.links img:active { background-color: #FFF;}
+
+.help {border-top:1px solid #333; padding: 5px 0; display: none;}
+.help li {display:list-item; padding:1px 0; cursor: pointer; color:#045;}
+.help li:hover {text-decoration: underline; color:#089;}
+
+
+/* MENU DE CONTROLE */
+.control { position:absolute; left:0; top:0; right: 0; padding:0; z-index: 2000; background-image: linear-gradient(to top, #FFF, #EEE, #CCC); border-bottom: 1px solid #CCC; min-width: 380px; box-shadow: 0 1px 20px #AAA;}
+.control button {display:inline-block; float:left; width: 60px; height: 46px; margin:0 !important; background:transparent url(../img/icons/msg.png) center 5px no-repeat; padding: 22px 0 0 0; font-size: .9em; transition: .5s; border:none; border-left: 1px solid #CCC; background-size: 22px !important; text-align: center; color:#555;}
+
+.control button:hover,
+.control button:active { box-shadow: none; color:#FFF; padding: 0; text-align: center; background-color:#000;}
+
+
+#btfile {background-image: url(../img/icons/upload.png);}
+#btuser {background-image: url(../img/icons/u.png);}
+#btgroup {background-image: url(../img/icons/groups.png);}
+#btout {background-image: url(../img/icons/power.png);}
+#btconfig {background-image: url(../img/icons/gear.png);}
+#btstyle {background-image: url(../img/icons/gear.png);}
+
+
+/* PANELs */
+.painels { position: absolute; display:none; top:46px; bottom: 0;
+            margin:0; padding: 5px !important; background: transparent; overflow: auto;}
+#groups, #users { bottom: 0; overflow-x: hidden;}
+#chat {right: 0; left: 0; width: auto; border-left: 1px solid #CCC;}
+
+/* SEND MESSAGEs */
+#message {position:fixed; bottom: 10px !important; height: 42px !important; width: 92%; margin:5px 0 5px 5px; color:#012; font-family: sans-serif; z-index: 5000 !important; display:none; box-shadow: 0 5px 15px #000;}
+
+
+/* LISTAGEM DE GRUPOS E USUARIOS */
+.list h2 {margin:0; padding: 5px 0 0 13px; width: 185px; position:fixed; top:45px; font-size: 2em; color:#09A; background: #FFF;}
+.list ul {margin:40px 0 0 -25px;}
+.list ul ul {margin:0;}
+.list li {display:block; width: 90%; padding: 4px 0 4px 20px; cursor:pointer; list-style: circle; color:#046;}
+.list span { font-weight: 100; font-size: .8em;}
+.list .desc {display:block; color:#09A;}
+.list .count {display:block; color:#089;}
+.list li:hover,
+.list li:active,
+.selected {color:#000; background-image: linear-gradient(to left, #FFF, #DEF);}
+.list li:hover .count,
+.list li:active .count,
+.selected .count {color:#012 !important;}
+
+/* XHAT container */
+.xhat {min-width: 330px; position: fixed; top:0; left:0; bottom: 0; right: 0;
+       overflow: auto; z-index: 0; background: #FFF;}
+
+/* MESSAGEs in XHAT */
+.msg {clear: both; float:left; margin:2px 0; padding: 5px 10px; cursor: pointer; font-size: .9em; min-width: 20%; max-width: 96%; transition: .4s;}
+.msg *{color:#000;  font-family:"Trebuchet MS",Optima,Arial,Helvetica,sans-serif;}
+.msg h2 {display:inline-block; font-size: .9em; margin:-2px 10px 0 0; padding:0; color:#059; font-weight: bold;}
+.msg img {display:none; width: 32px; float:left; margin: 0 5px 5px 1px; border-radius:50%;}
+.msg .msgtxt {color:#023; font-size: .95em;}
+.msg .msgtxt img {width: 20px; display:inline;}
+.msg .msgdate {display:block; font-size: .7em; color:#CCD; margin:-4px 0 -2px 0; padding:0;}
+
+.msg .inline {padding: 0; margin:0; font-size: .85em;}
+.msg .inline img {float:left; display:block; width: 16px;}
+
+.me {}
+.me h2 {color:#000; font-weight: 900;}
+.me img {display:none;}
+
+.msg:hover,
+.msg:active,
+.me:hover,
+.me:active { box-shadow: 0 5px 10px #999;}
+
+/* MEDIA QUERY */
+@media only screen and (max-width:400px){
+    .painels {width: 96%; min-width: 360px;}
+    #message {width: 92%; min-width: 300px;}
+}
+
+@media only screen and (min-width: 550px){
+    #groups, #users {margin-left: 0; width: 210px; position: fixed !important;}
+    #groups {display:block;}
+    #chat {display:block; left: 220px; right: 0px; width: auto;}
+    #message { width: 300px; left: 220px; right: 10px !important; bottom:0 !important; height: 80px !important;}
+}
+
+@media only screen and (min-width: 750px){
+    #groups {margin-left: 210px;}
+    #chat, #message {left: 430px;}
+    #mesage {}
+    #btuser, #btgroup {display:none}
+}
+
+@media only screen and (min-width: 870px){
+    .msg { max-width: 423px;}
+    #message { width: 390px;}
+}

@@ -1,0 +1,5 @@
+/nbproject
+/nbproject/private/
+sftp-config.json
+*.txt
+.travis.yml
