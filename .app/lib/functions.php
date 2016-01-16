@@ -58,7 +58,7 @@ function download($reqst = '') {
     header('Last-Modified: ' . gmdate('D, d M Y H:i:s', filemtime($reqst)) . ' GMT');
     header('Cache-Control: must_revalidate, public, max-age=31536000');
     header('Content-Length: ' . strlen($dt));
-    header('x-Server: Qzumba.com');
+    header('Content-Disposition: attachment; filename='.basename($reqst)); 
     header('ETAG: '.md5($reqst));
     exit($dt);
 }
