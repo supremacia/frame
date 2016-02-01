@@ -1,5 +1,5 @@
-# frame
-Skeleton for web PHP projects
+# Frame
+Base module & skeleton for web PHP projects with [LIMP](https://github.com/supremacia/limp).
 
 ## Install
 
