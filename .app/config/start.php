@@ -33,7 +33,8 @@ spl_autoload_register(function($class) {
 });
 
 // Composer autoload
-include APP_PATH.'vendor/autoload.php';
+if(file_exists(APP_PATH.'vendor/autoload.php'))
+  include APP_PATH.'vendor/autoload.php';
 
 // Mount the "App" static dock
 class_alias('Lib\App', 'App');
