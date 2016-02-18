@@ -14,7 +14,8 @@
 
 namespace Lib;
 
-class App {
+class App 
+{
 
     static $config = [];
     private static $dock = [];
@@ -35,39 +36,48 @@ class App {
     private static $vars = [];
     private static $db = [];
 
-    static function url() {
+    static function url() 
+    {
         return static::$url;
     }
 
-    static function root() {
+    static function root() 
+    {
         return static::$root;
     }
 
-    static function php() {
+    static function php() 
+    {
         return static::$php;
     }
 
-    static function inc($file) {
+    static function inc($file) 
+    {
         return include static::$php . $file . '.php';
     }
 
-    static function ctrl($file) {
+    static function ctrl($file) 
+    {
         return include static::$ctrl . $file . '.php';
     }
 
-    static function html() {
+    static function html()
+    {
         return static::$html;
     }
 
-    static function upload() {
+    static function upload() 
+    {
         return static::$upload;
     }
 
-    static function style() {
+    static function style() 
+    {
         return static::$style;
     }
 
-    static function script() {
+    static function script() 
+    {
         return static::$script;
     }
 
@@ -77,7 +87,8 @@ class App {
      *  ex.: App::db('name', new Lib\Name); -> instancia o objeto com o nome "name"
      *  ex.: App::db('name'); -> recupera o objeto "name"
      */
-    static function db($alias = null, $node = null) {
+    static function db($alias = null, $node = null) 
+    {
         if ($alias === null && $node === null && count(static::$config['db']) > 0)
             $alias = array_keys(static::$config['db'])[0]; //pega o primeiro "alias" em config (default)
 
@@ -94,7 +105,8 @@ class App {
      *  ex.: App::model('name', new Model\Name); -> instancia o objeto com o nome "name"
      *  ex.: App::model('name'); -> recupera o objeto "name"
      */
-    static function model($alias, $node = null) {
+    static function model($alias, $node = null) 
+    {
         if (isset(static::$models[$alias]))
             return static::$models[$alias];
         if ($node === null || !is_object($node))
@@ -102,57 +114,64 @@ class App {
         return static::$models[$alias] = $node;
     }
 
-    static function rqst($i = null) {
+    static function rqst($i = null) 
+    {
         if ($i === null)
             return static::$rqst;
         return isset(static::$rqst[$i]) ? static::$rqst[$i] : null;
     }
 
-    static function val($n, $v = null) {
+    static function val($n, $v = null) 
+    {
         if ($v === null)
             return static::$vars[$n];
         static::$vars[$n] = $v;
     }
 
-    static function getConfig($item = null) {
+    static function getConfig($item = null) 
+    {
         if ($item !== null && isset(static::$config[$item]))
             return static::$config[$item];
         else
             return static::$config;
     }
 
-    static function mount(Router $router) {
+    static function mount(Router $router) 
+    {
         static::$router = $router;
 
-        static::$root = WEB_PATH;
-        static::$php = APP_PATH . '';
-        static::$ctrl = APP_PATH . 'controller/';
-        static::$html = HTML_PATH . '';
-        static::$upload = APP_PATH . 'upload/';
-        static::$style = WEB_PATH . 'css/';
-        static::$script = WEB_PATH . 'js/';
+        static::$root = ¢WWW;
+        static::$php = ¢APP . '';
+        static::$ctrl = ¢APP . 'controller/';
+        static::$html = ¢HTML . '';
+        static::$upload = ¢APP . 'upload/';
+        static::$style = ¢CSS;
+        static::$script = ¢JS;
 
-        static::$url = URL;
-        static::$rqst = explode('/', RQST);
-        static::$files = URL . 'files/';
+        static::$url = ¢URL;
+        static::$rqst = explode('/', ¢RQST);
+        static::$files = ¢URL . 'files/';
     }
 
     /**
      * Run application controller
      * @return object Controller
      */
-    static function run() {
+    static function run() 
+    {
         return static::runController(static::$router);
     }
 
     /* Parking Object
      * 
      */
-    static function push($name, $object) {
+    static function push($name, $object) 
+    {
         static::$dock[$name] = $object;
     }
 
-    static function pull($name) {
+    static function pull($name) 
+    {
         return isset(static::$dock[$name]) ? static::$dock[$name] : false;
     }
 
@@ -160,7 +179,8 @@ class App {
      * Configure DataBase connections
      *
      */
-    static function dbConnection($alias, $dsn, $user, $passw) {
+    static function dbConnection($alias, $dsn, $user, $passw) 
+    {
         static::$config['db'][$alias] = ['dsn' => $dsn, 'user' => $user, 'passw' => $passw];
     }
 
@@ -168,7 +188,8 @@ class App {
      * Set default DataBase connection
      *
      */
-    static function dbDefault($alias = null) {
+    static function dbDefault($alias = null) 
+    {
         if ($alias !== null && is_string($alias))
             static::$config['default_db'] = $alias;
         return static::$config['default_db'];
@@ -178,7 +199,8 @@ class App {
      * Run Controller
      *
      */
-    static private function runController(Router $router) {
+    static private function runController(Router $router) 
+    {
         $res = $router->resolve();
 
         $ctrl = ucfirst($res['controller'] !== null ? $res['controller'] : static::$defaultController);
@@ -198,10 +220,11 @@ class App {
      *
      *
      */
-    static function go($url = '', $type = 'refresh', $cod = 302) {
+    static function go($url = '', $type = 'refresh', $cod = 302) 
+    {
         //se tiver 'http' na uri então será externo.
         if (strpos($url, 'http://') === false || strpos($url, 'https://') === false)
-            $url = URL . $url;
+            $url = ¢URL . $url;
 
         //send header
         if (strtolower($type) == 'refresh')

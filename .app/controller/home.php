@@ -61,7 +61,7 @@ class Home extends AppController {
         echo '<br>Decodificando: '.App::pull('can')->decode($d);
 
         //mostrando a chve CAN
-        p(file_get_contents(CONFIG_PATH.'keys/can.key'), true);
+        p(file_get_contents(¢CONFIG.'keys/can.key'), true);
 
 
         //Teste de saída do método MAIN
@@ -77,16 +77,28 @@ class Home extends AppController {
     }
 
     function login(){
-        $key = file_get_contents(CONFIG_PATH . 'keys/public.key');
-        $langPath = $this->_langPath();
+        $lp = $this->langPath();
+        $key = str_replace(["\r", 
+                             "\n", 
+                             '-----BEGIN PUBLIC KEY-----', 
+                             '-----END PUBLIC KEY-----'], 
+                             '', 
+                             file_get_contents(¢CONFIG . 'keys/public.key'));
 
         $d = new Lib\Doc('login');
         $d->val('title', 'Zumbi :: Login')
-                ->jsvar('key', str_replace(array("\r", "\n", '-----BEGIN PUBLIC KEY-----', '-----END PUBLIC KEY-----'), '', $key))
+                ->jsvar('key', $key)
                 ->jsvar('wsUri', 'ws://127.0.0.1:8080')
                 ->insertStyles(['reset', 'style'])
-                ->insertScripts([$langPath . 'msg', 'lib/aes', 'lib/jszip', 'lib/lib', 'lib/rsa', 'lib/jsbn', 'lib/forge', 'lib/xhat', 'main'])
-                ->body($langPath . 'body')
+                ->insertScripts([$lp.'msg', 
+                                'lib/aes', 
+                                'lib/jszip', 
+                                'lib/lib', 
+                                'lib/rsa', 
+                                'lib/jsbn', 
+                                'lib/xhat', 
+                                'main'])                          
+                ->body($lp.'body')
                 ->render()
                 ->send();
     }

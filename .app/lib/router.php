@@ -13,7 +13,8 @@ namespace Lib;
  *
  * @author Bill
  */
-class Router {
+class Router 
+{
 
     private $url = '';
     private $http = '';
@@ -23,11 +24,12 @@ class Router {
     private $all = [];
     private $method = 'GET';
 
-    function __construct($routers = [], $request = null, $url = null) {
+    function __construct($routers = [], $request = null, $url = null) 
+    {
         if ($request !== null)
-            define('RQST', $request);
+            define('¢RQST', $request);
         if ($url !== null)
-            define('URL', $url);
+            define('¢URL', $url);
         $this->routers = $routers;
         $this->method = $this->requestMethod();
         $this->mount();
@@ -37,7 +39,8 @@ class Router {
      * Insert routers
      *
      */
-    function respond($method = 'all', $request = '', $controller = 'home', $action = 'main') {
+    function respond($method = 'all', $request = '', $controller = 'home', $action = 'main') 
+    {
         $method = strtoupper(trim($method));
         if ($method == 'ALL')
             $this->all[] = ['request' => trim($request, '/'), 'controller' => $controller, 'action' => $action];
@@ -53,7 +56,8 @@ class Router {
      * Resolve 
      * 
      */
-    function resolve() {
+    function resolve() 
+    {
         //first: serach in ALL
         $route = $this->searchRouter($this->all);
 
@@ -74,38 +78,46 @@ class Router {
     }
 
     //Gets
-    function getUrl() {
+    function getUrl() 
+    {
         return $this->url;
     }
 
-    function getHttp() {
+    function getHttp() 
+    {
         return $this->http;
     }
 
-    function getBase() {
+    function getBase() 
+    {
         return $this->base;
     }
 
-    function getRequest() {
+    function getRequest() 
+    {
         return $this->request;
     }
 
-    function getRouters() {
+    function getRouters() 
+    {
         return $this->routers;
     }
 
-    function getAll() {
+    function getAll() 
+    {
         return $this->all;
     }
 
-    function getMethod() {
+    function getMethod() 
+    {
         return $this->method;
     }
 
     /**
      * Mount 
      */
-    private function mount() {
+    private function mount() 
+    {
         //Detect SSL access
         if (!isset($_SERVER['SERVER_PORT']))
             $_SERVER['SERVER_PORT'] = 80;
@@ -118,12 +130,12 @@ class Router {
             $base .= ':' . $_SERVER['SERVER_PORT'];
 
         //URL & REQST Constants:
-        defined('RQST') || define('RQST', urldecode(isset($_SERVER['REQUEST_URI']) ? urldecode(trim(str_replace($base, '', trim($_SERVER['REQUEST_URI'])), ' /')) : ''));
+        defined('¢RQST') || define('¢RQST', urldecode(isset($_SERVER['REQUEST_URI']) ? urldecode(trim(str_replace($base, '', trim($_SERVER['REQUEST_URI'])), ' /')) : ''));
 
-        defined('URL') || define('URL', isset($_SERVER['SERVER_NAME']) ? $http . $_SERVER['SERVER_NAME'] . $base . '/' : '');
+        defined('¢URL') || define('¢URL', isset($_SERVER['SERVER_NAME']) ? $http . $_SERVER['SERVER_NAME'] . $base . '/' : '');
 
-        $this->request = RQST;
-        $this->url = URL;
+        $this->request = ¢RQST;
+        $this->url = ¢URL;
         $this->base = $base;
         $this->http = $http;
     }
@@ -133,7 +145,8 @@ class Router {
      *
      * @params
      */
-    private function searchRouter($routes) {
+    private function searchRouter($routes) 
+    {
         foreach ($routes as $route) {
             if (!preg_match_all('#^' . $route['request'] . '$#', $this->request, $matches, PREG_OFFSET_CAPTURE))
                 continue;
@@ -163,7 +176,8 @@ class Router {
      * Get all request headers
      * @return array The request headers
      */
-    private function requestHeaders() {
+    private function requestHeaders() 
+    {
         // getallheaders available, use that
         if (function_exists('getallheaders')) {
             return getallheaders();
@@ -183,7 +197,8 @@ class Router {
      * Get the request method used, taking overrides into account
      * @return string The Request method to handle
      */
-    private function requestMethod() {
+    private function requestMethod() 
+    {
         // Take the method as found in $_SERVER
         $method = $_SERVER['REQUEST_METHOD'];
 

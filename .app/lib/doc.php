@@ -47,10 +47,10 @@ class Doc{
         $this->name = $name;
         $this->cached = $cached;
 
-        $this->pathHtml = HTML_PATH;
-        $this->pathHtmlCache = HTML_PATH.'cache/';
-        $this->pathStyle = App::style();
-        $this->pathScript = App::script();
+        $this->pathHtml = ¢HTML;
+        $this->pathHtmlCache = ¢HTML.'cache/';
+        $this->pathStyle = ¢CSS;
+        $this->pathScript = ¢JS;
 
         $this->header = $this->pathHtml.'header.html';
         $this->body   = $this->pathHtml.'body.html';
@@ -91,8 +91,8 @@ class Doc{
         $this->content .= file_get_contents($this->body);
         $this->content .= file_get_contents($this->footer);
 
-        if(APP_MODE == 'dev') $this->assets();
-        if(APP_MODE == 'pro') {
+        if(¢MODE == 'dev') $this->assets();
+        if(¢MODE == 'pro') {
             $this->assetsComp();
             $this->setContent(str_replace(["\r","\n","\t",'  '], '', $this->getContent()));
         }
@@ -156,7 +156,7 @@ class Doc{
             $content = exec('java -jar '.__DIR__.'/yc.jar "'.$this->pathScript.$this->name.'_all.js"');
             file_put_contents($this->pathScript.$this->name.'_all.js', $content);
         }
-        $s = '<script id="javascript_base">var URL="'.URL.'"';
+        $s = '<script id="javascript_base">var URL="'.¢URL.'"';
         foreach ($this->jsvalues as $n=>$v) {
             $s .= ','.$n.'='.(is_string($v) ? '"'.$v.'"' : $v);
         }
@@ -174,17 +174,17 @@ class Doc{
     private function assets(){
         $s = '';
         foreach($this->styles as $id=>$f){
-            $s .= '<link id="stylesheet_'.$id.'" rel="stylesheet" href="'.URL.'css/'.$f.'.css">'."\n\t";
+            $s .= '<link id="stylesheet_'.$id.'" rel="stylesheet" href="'.¢URL.'css/'.$f.'.css">'."\n\t";
         }
         $this->val('style', $s);
 
-        $s = '<script id="javascript_base">var URL="'.URL.'"';
+        $s = '<script id="javascript_base">var URL="'.¢URL.'"';
         foreach ($this->jsvalues as $n=>$v) {
             $s .= ','.$n.'='.(is_string($v) ? '"'.$v.'"' : $v);
         }
         $s .= ';</script>';
         foreach($this->scripts as $id=>$f){
-            $s .= "\n\t".'<script id="javascript_'.$id.'" src="'.URL.'js/'.$f.'.js"></script>';
+            $s .= "\n\t".'<script id="javascript_'.$id.'" src="'.¢URL.'js/'.$f.'.js"></script>';
         }
         $this->val('script', $s); //e($this);
     }
@@ -194,7 +194,7 @@ class Doc{
      *
      */
     function send() {
-        if(APP_MODE == 'pro'){
+        if(¢MODE == 'pro'){
             ob_end_clean();
             ob_start('ob_gzhandler');
         }
@@ -228,7 +228,7 @@ class Doc{
      */
     function sendWithCach()
     {
-        //if(APP_MODE == 'pro'){
+        //if(¢MODE == 'pro'){
         //    ob_end_clean();
         //    ob_start('ob_gzhandler');
         //}
@@ -303,7 +303,7 @@ class Doc{
                 $vartemp = '';
 
                 //constant URL
-                if($ret['-tipo-'] == 'var' && $ret['var'] == 'url') $vartemp = URL;
+                if($ret['-tipo-'] == 'var' && $ret['var'] == 'url') $vartemp = ¢URL;
                 elseif (method_exists($this, '_' . $ret['-tipo-'])) $vartemp = $this->{'_' . $ret['-tipo-']}($ret);
 
                 //Incluindo o bloco gerado pelas ©NeosTags

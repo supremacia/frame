@@ -33,7 +33,7 @@
     $can->decode("ntW") => 50000
 
     Depende do arquivo com a chave aleatória (gerada na instalação da aplicação)
-    define('CONFIG_PATH', 'path/to/config/file/');
+    define('¢CONFIG', 'path/to/config/file/');
 
     Use "limp" para gerar uma chave aleatória:
     >> php limp key:generate [enter]
@@ -66,8 +66,8 @@ class Can{
         if($extra) $this->useExtra = true;
 
         //get "base" key OR use default
-        if(file_exists(CONFIG_PATH.'can.key')){
-            $base = file_get_contents(CONFIG_PATH.'can.key');
+        if(file_exists(¢CONFIG.'can.key')){
+            $base = file_get_contents(¢CONFIG.'can.key');
             $this->base = [];
             $this->extra_base = [];
             $base = explode("\n", $base);

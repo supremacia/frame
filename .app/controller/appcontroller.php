@@ -52,7 +52,7 @@ abstract class AppController {
      *
      *
      */
-    function _decodePostData() {
+    final function decodePostData() {
         if (!isset($_POST['data']))
             return false;
         $rec = json_decode($_POST['data']);
@@ -78,7 +78,7 @@ abstract class AppController {
      *
      *
      */
-    function _sendEncriptedData($dt) {
+    final function sendEncriptedData($dt) {
         //Json encoder
         $enc = json_encode($dt);
 
@@ -94,7 +94,7 @@ abstract class AppController {
      * Default = 'lang/en/'
      *
      */
-    function _langPath() {
+    final function langPath() {
         $lang = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
 
         switch (substr($lang[0], 0, 2)) {

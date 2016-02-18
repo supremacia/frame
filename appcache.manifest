@@ -2,12 +2,6 @@ CACHE MANIFEST
 
 CACHE:
 # Defines resources to be cached.
-files/sound/1.mp3
-files/sound/2.mp3
-files/sound/3.mp3
-files/sound/4.mp3
-css/style.min.css
-js/script.min.js
 css/reset.css
 favicon.ico
 
@@ -15,9 +9,6 @@ FALLBACK:
 # Defines resources to be used if non-cached
 # resources cannot be downloaded, for example
 # when the browser is offline..
-# photos/ figure2.png
-# css/style.min.css
-# js/script.min.js
 
 NETWORK:
 # Defines resources that will not be cached.

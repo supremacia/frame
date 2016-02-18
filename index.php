@@ -6,16 +6,16 @@
  * @license     MIT
  * @author      Bill Rocha - prbr@ymail.com
  * @version     0.0.1
- * @package     Web
+ * @package     Application
  * @access      public
  * @since       0.3.0
  *
  */
 
 //Configurations
-include __DIR__ . '/.app/config/start.php';
-include CONFIG_PATH . 'router.php';
-include CONFIG_PATH . 'database.php';
+include __DIR__.'/.app/limp';
+include ¢CONFIG.'router.php';
+include ¢CONFIG.'database.php';
 
 //Mount Application
 App::mount($router);

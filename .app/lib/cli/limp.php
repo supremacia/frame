@@ -2,12 +2,12 @@
 echo 'Always remember: less is more in PHP!';
 if (php_sapi_name() !== 'cli') exit('It\'s no cli!');
 
-include dirname(dirname(__DIR__)).'/config/start.php';
+include dirname(dirname(__DIR__)).'/limp';
 
 //Constants:
-defined('WEB_PATH') || define('WEB_PATH', str_replace('\\', '/', dirname(__DIR__)).'/');
-define('CLI_PATH', APP_PATH.'lib/cli/');
-define('CONFIG_KEYS_PATH', CONFIG_PATH.'keys/');
+defined('¢WWW') || define('¢WWW', str_replace('\\', '/', dirname(__DIR__)).'/');
+define('CLI_PATH', ¢APP.'lib/cli/');
+define('CONFIG_KEYS_PATH', ¢CONFIG.'keys/');
 define('TIMEON', microtime(true));
 
 //Command line settings...
@@ -101,18 +101,18 @@ function _make($v, $arg){
             return "\n\n  ERROR: indique o NOME do arquivo!\n";
         $name = strtolower($arg[0]);
 
-        if(file_exists(APP_PATH.'html/'.$name.'.html'))
-            return "\n\n  WARNNING: this file already exists!\n  ".APP_PATH.'html/'.$name.".html\n\n";
+        if(file_exists(¢APP.'html/'.$name.'.html'))
+            return "\n\n  WARNNING: this file already exists!\n  ".¢APP.'html/'.$name.".html\n\n";
 
-        if(!checkAndOrCreateDir(dirname(APP_PATH.'html/'.$name.'.html'),true))
-            return "\n\n  WARNNING: access denied in directory '".dirname(APP_PATH.'html/'.$name.'.html')."'\n\n";
+        if(!checkAndOrCreateDir(dirname(¢APP.'html/'.$name.'.html'),true))
+            return "\n\n  WARNNING: access denied in directory '".dirname(¢APP.'html/'.$name.'.html')."'\n\n";
 
-        $ctrl = file_get_contents(CONFIG_PATH.'templates/html.tpl');
+        $ctrl = file_get_contents(¢CONFIG.'templates/html.tpl');
 
         $ctrl = str_replace('%name%', ucfirst($name), $ctrl);
-        file_put_contents(APP_PATH.'html/'.$name.'.html', $ctrl);
+        file_put_contents(¢APP.'html/'.$name.'.html', $ctrl);
 
-        return "\n\n  HTML file '".APP_PATH.'html/'.$name.'.html'."' criado com sucesso!\n\n";
+        return "\n\n  HTML file '".¢APP.'html/'.$name.'.html'."' criado com sucesso!\n\n";
     }
 
     else return "\n\n  ----- ERROR: Command 'make:$v' not found!\n"._help();
@@ -138,7 +138,7 @@ function checkAndOrCreateDir($dir, $create = false, $perm = '0777'){
 // create file (controller/model/library)
 function createFile($name, $type = 'controller'){
     $name = strtolower($name);
-    $path = APP_PATH.$type.'/';
+    $path = ¢APP.$type.'/';
 
     if(file_exists($path.$name.'.php'))
         return "\n\n  WARNNING: this file already exists!\n  ".$path.$name.".php\n\n";
@@ -147,7 +147,7 @@ function createFile($name, $type = 'controller'){
         return "\n\n  WARNNING: access denied in directory '".dirname($path.$name.'.php')."'\n\n";
 
     //get template
-    $ctrl = file_get_contents(CONFIG_PATH.'templates/'.$type.'.tpl');
+    $ctrl = file_get_contents(¢CONFIG.'templates/'.$type.'.tpl');
 
     //replace %namespace% and %name%
     $ctrl = str_replace('%name%', ucfirst(basename($name)), $ctrl);

@@ -19,8 +19,6 @@ window.onload = function(){
 
     window.onresize = function (e){painel('chat')}
 
-
-
     //Iniciando LIBRARYS
     SOUND = new lib.sound();
     FILE = new lib.upload();
@@ -61,7 +59,7 @@ window.onload = function(){
         var vk = RSA.encrypt(js, RSA.getPublicKey(key));
 
         AJAX = new lib.ajax();
-        AJAX.set.url(URL+'user/checkUser');
+        AJAX.set.¢URL(¢URL+'user/checkUser');
         AJAX.set.data({key:vk});
         AJAX.set.complete(function(data){
             var e = JSON.parse(AES.dec(data, USER.key));
@@ -111,7 +109,7 @@ window.onload = function(){
                 _('btstyle').onclick = function(){
                     STYLE.active ++;
                     if(STYLE.active >= STYLE.source.length) STYLE.active = 0;
-                    _('stylesheet_1').href = URL+'css/'+STYLE.source[STYLE.active]+'.css';
+                    _('stylesheet_1').href = ¢URL+'css/'+STYLE.source[STYLE.active]+'.css';
 
                 }
 
@@ -162,7 +160,7 @@ var MSG = {
     show: function (msg){
         var d = document.createElement('DIV');
         d.className = 'msg'+(msg.userid == USER.id ? ' me':'');
-        var m = '<img src="'+URL+'img/d'+parseInt(msg.userid.toString().substr(-1))+'.jpg">'
+        var m = '<img src="'+¢URL+'img/d'+parseInt(msg.userid.toString().substr(-1))+'.jpg">'
                 +'<h2>'+(msg.userid == USER.id ? '&lt;You&gt;':msg.name)+'</h2>'
                 +'<span class="msgdate">'+("undefined" !== typeof msg.date ? msg.date : this.dtime())+' '+' + AES 256</span>'
                 +'<div class="msgtxt">'+msg.message.replace(/(  )/g, " &nbsp;")+'</div>'
@@ -249,7 +247,7 @@ function listMsgGroup(g){
 
 function getMsgByGroup(g){
     //Pegando os dados no servidor
-    AJAX.set.url(URL+'msg/getMsgByGroup/');
+    AJAX.set.¢URL(¢URL+'msg/getMsgByGroup/');
     AJAX.set.data({enc:AES.enc(JSON.stringify({group:g}), USER.key), id:USER.id});
     AJAX.set.complete(function(data){
         var e = JSON.parse(AES.dec(data, USER.key));
@@ -265,7 +263,7 @@ function getMsgByGroup(g){
 }
 
 function getUserGroupStatus(){
-    AJAX.set.url(URL+'msg/getUserGroupStatus');
+    AJAX.set.¢URL(¢URL+'msg/getUserGroupStatus');
     AJAX.set.data({enc:AES.enc(JSON.stringify({group:'nada'}), USER.key), id:USER.id});
 
     AJAX.set.complete(function(data){
@@ -300,7 +298,7 @@ function getMsgUser(u){
 }
 
 function getUserList(){
-    AJAX.set.url(URL+'user/getUserList');
+    AJAX.set.¢URL(¢URL+'user/getUserList');
     AJAX.set.data({enc:AES.enc(JSON.stringify({group:'nada'}), USER.key), id:USER.id});
 
     AJAX.set.complete(function(data){
