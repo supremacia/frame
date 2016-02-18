@@ -19,7 +19,10 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "limp/doc": "~0.0.1"
+        "limp/app": "~0.0.1",
+        "limp/data": "~0.0.1",
+        "limp/doc": "~0.0.1",
+        "limp/cli": "~0.0.1"
     },
     "require-dev": {
     },
