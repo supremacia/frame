@@ -2,7 +2,7 @@
 echo 'Always remember: less is more in PHP!';
 if (php_sapi_name() !== 'cli') exit('It\'s no cli!');
 
-include dirname(dirname(__DIR__)).'/limp';
+//include dirname(dirname(__DIR__)).'/limp';
 
 //Constants:
 defined('¢WWW') || define('¢WWW', str_replace('\\', '/', dirname(__DIR__)).'/');

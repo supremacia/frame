@@ -1,9 +1,4 @@
 <?php
-//Cli mode
-if(php_sapi_name() === 'cli') {
-	include 'lib/cli/limp.php';
-	exit();
-}
 
 // Defaults
 error_reporting(E_ALL ^ E_STRICT);
@@ -48,3 +43,9 @@ if(file_exists(¢APP.'vendor/autoload.php'))
 // Mount the "App" static dock
 class_alias('Lib\App', 'App');
 class_alias('Lib\App', 'dock'); 
+
+//Cli mode
+if(php_sapi_name() === 'cli') {
+	include 'lib/cli/limp.php';
+	exit();
+}
