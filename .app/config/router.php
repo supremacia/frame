@@ -25,7 +25,7 @@
  */
 
 $router = new Limp\App\Router;
-$Router ->respond('get', '/', 'home', 'login')
+$router ->respond('get', '/', 'home', 'login')
         ->respond('get', '/home/index', 'home', 'index') //home/index (only)
         ->respond('get', 'home/index/(.*)', 'home', 'other') //home/index/parms ...
         ->respond('get','login', 'home', 'login');
