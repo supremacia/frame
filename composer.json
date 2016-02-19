@@ -27,12 +27,8 @@
     "require-dev": {
     },
     "autoload": {
-        "classmap": [
-            ".app/lib"
-        ],
         "psr-4": {
-            "App\\": ".app/",
-            "Lib\\": ".app/lib/",
+            "Controller\\": ".app/controller/",
             "Model\\": ".app/model/"
         }
     },
@@ -43,13 +39,13 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "php .app/limp optimize"
+            "php index.php optimize"
         ],
         "post-update-cmd": [
-            "php .app/limp optimize"
+            "php index.php optimize"
         ],
         "post-create-project-cmd": [
-            "php .app/limp key:generate"
+            "php index.php key:generate"
         ]
     }
 }
