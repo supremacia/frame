@@ -27,12 +27,12 @@ define('¢WWW', str_replace('\\', '/', strpos($base, 'phar://') !== false
                     : $base.'/'));
 //Path if PHAR mode or false
 define('¢PHAR', (strpos(¢WWW, 'phar://') !== false) ? ¢WWWW : false);
-define('¢APP', ¢WWW.'.app/');      	//Path to Application
-define('¢CONFIG', ¢APP.'config/'); 	//Path to config files
-define('¢LOG', ¢APP.'log/');		//Path to log files
-define('¢HTML', ¢APP.'html/');		//Path to HTML files
-define('¢JS', ¢WWW.'js/');			//Path to Javascript files
-define('¢CSS', ¢WWW.'css/');		//Path to CSS Style files
+define('¢APP', ¢WWW.'.app/');       //Path to Application
+define('¢CONFIG', ¢APP.'config/');  //Path to config files
+define('¢LOG', ¢APP.'log/');        //Path to log files
+define('¢HTML', ¢APP.'html/');      //Path to HTML files
+define('¢JS', ¢WWW.'js/');          //Path to Javascript files
+define('¢CSS', ¢WWW.'css/');        //Path to CSS Style files
 
 //Helpers
 include ¢APP.'functions.php';
@@ -50,23 +50,22 @@ spl_autoload_register(function($class) {
 
 // Composer autoload
 if(file_exists(¢APP.'vendor/autoload.php'))
-  include ¢APP.'vendor/autoload.php';
+    include ¢APP.'vendor/autoload.php';
 
-// Mount the "App" static dock
+//Cli mode
+if(php_sapi_name() === 'cli') {
+    include ¢APP.'vendor/limp/cli/limp.php';
+    exit();
+}
+
+//Mounting Application with LIMP components 
+// - replace with your favorite libraries
 class_alias('Limp\App\App', 'App');
 
 //Configurations
 include ¢CONFIG.'database.php';
-
-//Cli mode
-if(php_sapi_name() === 'cli') {
-	include ¢APP.'vendor/limp/cli/limp.php';
-	exit();
-}
-
 include ¢CONFIG.'router.php';
 
-//Mount Application
 App::mount($router);
 
 //...and run

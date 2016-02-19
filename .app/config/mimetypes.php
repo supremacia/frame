@@ -1,15 +1,15 @@
 <?php
-/** 
- * MimesTypes 
- * @copyright	NEOS PHP Framework - http://neosphp.org
- * @license		http://neosphp.org/license 
- * @version		CAN : B4BC
- * @package		Neos\Config
- 
- * THIS CODE WAS COPIED OF CODEIGNITER FRAMEWORK (http://www.codeigniter.com) >>>
- * "Don't reinvent the wheel is the methodology!" Ou apenas: "Não reinvente a roda!"
- 
-*/
+/**
+ * Limp - less is more in PHP
+ * @copyright   Bill Rocha - http://google.com/+BillRocha
+ * @license     MIT
+ * @author      Bill Rocha - prbr@ymail.com
+ * @version     0.2.0
+ * @package     Config
+ * @access      public
+ * @since       0.1.2
+ *
+ */
 
 $_mimes = 
 array(	

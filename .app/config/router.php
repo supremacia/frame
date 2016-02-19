@@ -3,7 +3,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Bill.
+ * Copyright 2015 googlo.com/+BillRocha.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,12 +25,12 @@
  */
 
 $router = new Limp\App\Router;
-$router->respond('get', '/', 'home', 'login')
+$Router ->respond('get', '/', 'home', 'login')
         ->respond('get', '/home/index', 'home', 'index') //home/index (only)
         ->respond('get', 'home/index/(.*)', 'home', 'other') //home/index/parms ...
-        ->respond('get','login', 'home', 'login')
+        ->respond('get','login', 'home', 'login');
 
-//Others examples ...
+/* Others examples ...
 
         ->respond('get|post', 'blog(/\d{4}(/\d{2}(/\d{2}(/[a-z0-9_-]+)?)?)?)?', 'blog1') //blog/2015/11/23/titulo_da_materia
         ->respond('get|post', 'blog(/\d{4}(/\d{2}(/\d{2}(.*)?)?)?)?', 'blog2') //blog/2015/11/23/qualquer coisa aqui
@@ -55,3 +55,5 @@ $router->respond('get', '/', 'home', 'login')
             exit('<br>finish callback!');
             //In this case, the CALLBACK call the Controller/Action or stop...
         }); //Resolve with callback
+
+*/        
