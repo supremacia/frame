@@ -100,14 +100,5 @@ function exceptionHandler($e) {
         '<b>Stack trace:</b><pre>'.$e->getTraceAsString().'</pre>'.
         '<b>Thrown in: </b>'.$e->getFile().' ['.$e->getLine().']';
     }
-
-    $d = new Limp\Doc\Html('error');
-    $d->val('title', 'Zumbi :: Error')
-      ->val('htitle', 'Error')
-      ->val('error', $err)
-      ->insertStyles(['reset','admin'])
-      ->cached(false)
-      ->body('error')
-      ->render()
-      ->send();
+    exit($err);
  }
