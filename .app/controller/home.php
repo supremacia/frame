@@ -29,8 +29,8 @@
  */
 
 namespace Controller;
-use Lib\App;
-use Lib;
+use Limp\Data;
+use Limp\Doc;
 
 /**
  * Description of home
@@ -54,7 +54,7 @@ class Home extends AppController {
         $h = App::pull('list');
         echo $h('olá');
 
-        App::push('can', new \Lib\Can(null, true));
+        App::push('can', new Can(null, true));
         echo '<br>Código CAN para o número "108788293834878" : '.App::pull('can')->encode(108788293834878);
         $t = intval(microtime(true));
         echo '<br>Código CAN para o time "'.$t.'" : '.($d = App::pull('can')->encode($t));
@@ -85,7 +85,7 @@ class Home extends AppController {
                              '', 
                              file_get_contents(¢CONFIG . 'keys/public.key'));
 
-        $d = new Lib\Doc('login');
+        $d = new Doc\Html('login');
         $d->val('title', 'Zumbi :: Login')
                 ->jsvar('key', $key)
                 ->jsvar('wsUri', 'ws://127.0.0.1:8080')

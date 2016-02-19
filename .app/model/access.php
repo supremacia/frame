@@ -13,7 +13,7 @@
  */
 
 namespace Model;
-use Lib\App;
+use Limp\App;
 
 class Access {
 

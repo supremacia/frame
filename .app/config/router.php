@@ -24,7 +24,7 @@
  * THE SOFTWARE.
  */
 
-$router = new Lib\Router;
+$router = new Limp\App\Router;
 $router->respond('get', '/', 'home', 'login')
         ->respond('get', '/home/index', 'home', 'index') //home/index (only)
         ->respond('get', 'home/index/(.*)', 'home', 'other') //home/index/parms ...

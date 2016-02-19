@@ -7,9 +7,11 @@
 
 namespace Controller;
 
-use Lib;
+use Limp;
 use Model;
-use Lib\App;
+use Limp\App;
+use Limp\Doc;
+use Limp\Data;
 
 abstract class AppController {
 
@@ -37,7 +39,7 @@ abstract class AppController {
      * -- Bypass it in your controller
      */
     function main() {
-        $d = new Lib\Doc('nopage');
+        $d = new Html('nopage');
         $d->sendCache();
         $d->val('title', 'Zumbi :: 404')
                 ->insertStyles(['reset', 'nopage'])
@@ -68,8 +70,8 @@ abstract class AppController {
                 return false;
 
             //Decriptando
-            Lib\Aes::size(256);
-            return ['data' => $rec, 'dec' => json_decode(Lib\Aes::dec($rec->enc, $this->key))];
+            Aes::size(256);
+            return ['data' => $rec, 'dec' => json_decode(Aes::dec($rec->enc, $this->key))];
         }
         return ['data' => $rec];
     }
@@ -83,8 +85,8 @@ abstract class AppController {
         $enc = json_encode($dt);
 
         //Encriptando
-        Lib\Aes::size(256);
-        $enc = Lib\Aes::enc($enc, $this->key);
+        Aes::size(256);
+        $enc = Aes::enc($enc, $this->key);
 
         //Enviando
         exit($enc);
