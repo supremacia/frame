@@ -13,5 +13,5 @@ Require [PHP](http://www.php.net/) & [Composer](https://getcomposer.org/download
 Web site: http://supremacia.github.io/frame
 
 ----
-_<small><sup>Att: MODE = 'pro' require [Java](https://www.java.com)</sup></small>_
+_<small>**Att:** _MODE = 'pro' (index.php) require [Java](https://www.java.com) for compression (Javascript, HTML and CSS)</sup>_
 
