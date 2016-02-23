@@ -41,7 +41,7 @@ class Database
 						 		'user'=>'zumbi',
 						 		'passw'=>'zumbi#123456'
 						 	   ],
-			   		  'sqlite'=>['dsn'=>_CONFIG.'sqlite.db']
+			   		  'sqlite'=>['dsn'=>'sqlite.db']
 			   		 ];
 	static $default = 'mysql';
     
