@@ -8,7 +8,9 @@ Base module & skeleton for web PHP projects with [LIMP](https://github.com/supre
 composer create-project limp/frame
 ```
 
-Require [PHP](http://www.php.net/) & [Composer](https://getcomposer.org/download/).
+Require [PHP](http://www.php.net/) & [Composer](https://getcomposer.org/download/). 
+
+<small><small>Att: MODE = 'pro' require [Java](https://www.java.com)</small></small>
 
 
 Web site: http://supremacia.github.io/frame
