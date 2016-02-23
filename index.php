@@ -64,8 +64,6 @@ if(file_exists(_APP.'vendor/autoload.php'))
 set_error_handler(['Limp\App\Debug','errorHandler']);
 set_exception_handler(['Limp\App\Debug', 'exceptionHandler']);
 
-exit('<pre>'.print_r(get_defined_constants(), true).'</pre>');
-
 //Cli mode
 if(php_sapi_name() === 'cli') return new Limp\Cli\Limp($argv);
 
