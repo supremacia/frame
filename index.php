@@ -40,7 +40,7 @@ date_default_timezone_set('America/Sao_Paulo');
 
 // Constants
 $base = __DIR__;
-define('_MODE', 'pro'); // options: dev & pro
+define('_MODE', 'dev'); // options: dev & pro
 //Path to WWW
 define('_WWW', str_replace('\\', '/', strpos($base, 'phar://') !== false
                     ? dirname(str_replace('phar://', '', $base)).'/'
