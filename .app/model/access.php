@@ -13,9 +13,12 @@
  */
 
 namespace Model;
-use Limp\App;
 
-class Access {
+use Model\App\Base;
+use Limp\Data;
+
+class Access extends Base
+{
 
     private $server = [];
 
@@ -23,7 +26,8 @@ class Access {
      * Get data from $_SERVER
      *
      */
-    function getServer(){
+    function getUserData()
+    {
         // Pegando dados de ACESSO do cliente
         $this->server = [':req'=>$_SERVER['REQUEST_URI'],
                          ':met'=>$_SERVER['REQUEST_METHOD'],
@@ -40,10 +44,11 @@ class Access {
      *  Save data in Mysql
      *
      */
-    function save(){
-        App::db()->query('INSERT INTO access (REQUEST,METHOD,REMOTE,AGENT,ACCEPT,ENCODING,LANGUAGE,IDATE)
-                            VALUES (:req,:met,:rem,:age,:acc,:enc,:lan,:idate)',
-                            $this->server);
+    function save()
+    {
+        $this->db->query('INSERT INTO access (REQUEST,METHOD,REMOTE,AGENT,ACCEPT,ENCODING,LANGUAGE,IDATE)
+                        VALUES (:req,:met,:rem,:age,:acc,:enc,:lan,:idate)',
+                        $this->server);
         return $this;
     }
 
@@ -51,8 +56,9 @@ class Access {
      *  Deleta gravações anteriores a 30 dias
      *
      */
-    function clear(){
-        App::db()->query('DELETE FROM access WHERE DATE(access.IDATE) <= DATE(DATE(NOW())-30)');
+    function clear()
+    {
+        $this->db->query('DELETE FROM access WHERE DATE(access.IDATE) <= DATE(DATE(NOW())-30)');
         return $this;
     }
 

@@ -1,15 +1,35 @@
 <?php
-
 /**
  * Limp - less is more in PHP
- * @copyright   Bill Rocha - http://plus.google.com/+BillRocha
+ * @copyright   Bill Rocha - http://google.com/+BillRocha
  * @license     MIT
  * @author      Bill Rocha - prbr@ymail.com
- * @version     0.1.7
- * @package     Application
+ * @version     0.0.1
+ * @package     Limp
  * @access      public
  * @since       0.3.0
  *
+ * The MIT License
+ *
+ * Copyright 2015 http://google.com/+BillRocha.
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 // Defaults
@@ -20,53 +40,37 @@ date_default_timezone_set('America/Sao_Paulo');
 
 // Constants
 $base = __DIR__;
-define('¢MODE', 'pro'); // options: dev & pro
+define('_MODE', 'pro'); // options: dev & pro
 //Path to WWW
-define('¢WWW', str_replace('\\', '/', strpos($base, 'phar://') !== false
+define('_WWW', str_replace('\\', '/', strpos($base, 'phar://') !== false
                     ? dirname(str_replace('phar://', '', $base)).'/'
                     : $base.'/'));
 //Path if PHAR mode or false
-define('¢PHAR', (strpos(¢WWW, 'phar://') !== false) ? ¢WWWW : false);
-define('¢APP', ¢WWW.'.app/');       //Path to Application
-define('¢CONFIG', ¢APP.'config/');  //Path to config files
-define('¢LOG', ¢APP.'log/');        //Path to log files
-define('¢HTML', ¢APP.'html/');      //Path to HTML files
-define('¢JS', ¢WWW.'js/');          //Path to Javascript files
-define('¢CSS', ¢WWW.'css/');        //Path to CSS Style files
-
-//Helpers
-include ¢APP.'functions.php';
-
-// Error/Exception set
-set_error_handler("errorHandler");
-set_exception_handler('exceptionHandler');
-
-// Internal autoload
-set_include_path(¢APP.PATH_SEPARATOR.get_include_path());
-spl_autoload_register(function($class) {
-    $class = ¢APP.str_replace('\\', '/', trim(strtolower($class), '\\')).'.php';
-    return (($file = _file_exists($class)) !== false ? require_once $file : false);
-});
+define('_PHAR', (strpos(_WWW, 'phar://') !== false) ? _WWW : false);
+define('_APP', _WWW.'.app/');       //Path to Application
+define('_CONFIG', _APP.'Config/');  //Path to config files
+define('_LOG', _APP.'Log/');        //Path to log files
+define('_HTML', _APP.'Html/');      //Path to HTML files
+define('_JS', _WWW.'js/');          //Path to Javascript files
+define('_CSS', _WWW.'css/');        //Path to CSS Style files
 
 // Composer autoload
-if(file_exists(¢APP.'vendor/autoload.php'))
-    include ¢APP.'vendor/autoload.php';
+if(file_exists(_APP.'vendor/autoload.php'))
+    include _APP.'vendor/autoload.php';
+
+// ------- optional - replace with your favorite libraries/solutions 
+
+// Error/Exception
+set_error_handler(['Limp\App\Debug','errorHandler']);
+set_exception_handler(['Limp\App\Debug', 'exceptionHandler']);
+
+exit('<pre>'.print_r(get_defined_constants(), true).'</pre>');
 
 //Cli mode
-if(php_sapi_name() === 'cli') {
-    include ¢APP.'vendor/limp/cli/limp.php';
-    exit();
-}
+if(php_sapi_name() === 'cli') return new Limp\Cli\Limp($argv);
 
-//Mounting Application with LIMP components 
-// - replace with your favorite libraries
-class_alias('Limp\App\App', 'App');
-
-//Configurations
-include ¢CONFIG.'database.php';
-include ¢CONFIG.'router.php';
-
-App::mount($router);
+//Mounting Application
+Limp\App\App::mount();
 
 //...and run
-App::run();
+Limp\App\App::run();

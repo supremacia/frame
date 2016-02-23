@@ -1,9 +1,17 @@
 <?php
-
-/*
+/**
+ * Limp - less is more in PHP
+ * @copyright   Bill Rocha - http://google.com/+BillRocha
+ * @license     MIT
+ * @author      Bill Rocha - prbr@ymail.com
+ * @version     0.0.1
+ * @package     Config
+ * @access      public
+ * @since       0.3.0
+ *
  * The MIT License
  *
- * Copyright 2015 googlo.com/+BillRocha.
+ * Copyright 2015 http://google.com/+BillRocha.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,11 +32,19 @@
  * THE SOFTWARE.
  */
 
-$router = new Limp\App\Router;
-$router ->respond('get', '/', 'home', 'login')
+return (new Limp\App\Router)
+        ->respond('get', '/', 'home', 'login')
         ->respond('get', '/home/index', 'home', 'index') //home/index (only)
         ->respond('get', 'home/index/(.*)', 'home', 'other') //home/index/parms ...
-        ->respond('get','login', 'home', 'login');
+        ->respond('get', 'main', 'home', 'main');
+
+
+
+
+
+
+
+
 
 /* Others examples ...
 
@@ -55,5 +71,4 @@ $router ->respond('get', '/', 'home', 'login')
             exit('<br>finish callback!');
             //In this case, the CALLBACK call the Controller/Action or stop...
         }); //Resolve with callback
-
 */        

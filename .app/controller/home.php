@@ -1,9 +1,17 @@
 <?php
-
-/*
+/**
+ * Limp - less is more in PHP
+ * @copyright   Bill Rocha - http://google.com/+BillRocha
+ * @license     MIT
+ * @author      Bill Rocha - prbr@ymail.com
+ * @version     0.0.1
+ * @package     Controller
+ * @access      public
+ * @since       0.3.0
+ *
  * The MIT License
  *
- * Copyright 2015 Bill.
+ * Copyright 2015 http://google.com/+BillRocha.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,66 +32,72 @@
  * THE SOFTWARE.
  */
 
-/**
- * @todo  Escrever outro controller abstrato para reavaliar Controller\Appcontroller
- */
-
 namespace Controller;
-use Limp\Data;
+
+use Controller\App\Base;
+use Model;
+use Limp\App\App as Dock;
 use Limp\Doc;
+use Limp\Data;
 
 /**
  * Description of home
  *
  * @author Bill
  */
-class Home extends AppController {
+class Home extends Base 
+{
 
 
     function __construct($params) {
         $this->params = $params;
     }
 
+    //All not 
     function main() {
         //parent::main();
 
 
         /* Exemplo de uso do método push/pull da classe App
          */
-        App::push('list', function($txt){return ' -- '.$txt.' -- ';});
-        $h = App::pull('list');
+        Dock::push('list', function($txt){return ' -- '.$txt.' -- ';});
+        $h = Dock::pull('list');
         echo $h('olá');
 
-        App::push('can', new Can(null, true));
-        echo '<br>Código CAN para o número "108788293834878" : '.App::pull('can')->encode(108788293834878);
+        Dock::push('can', new Data\Can(null, true));
+        echo '<br>Código CAN para o número "108788293834878" : '.Dock::pull('can')->encode(108788293834878);
         $t = intval(microtime(true));
-        echo '<br>Código CAN para o time "'.$t.'" : '.($d = App::pull('can')->encode($t));
-        echo '<br>Decodificando: '.App::pull('can')->decode($d);
+        echo '<br>Código CAN para o time "'.$t.'" : '.($d = Dock::pull('can')->encode($t));
+        echo '<br>Decodificando: '.Dock::pull('can')->decode($d);
 
         //mostrando a chve CAN
-        p(file_get_contents(¢CONFIG.'keys/can.key'), true);
+        Dock::p(file_get_contents(_CONFIG.'keys/can.key'), true);
 
 
         //Teste de saída do método MAIN
-        exit('<br> -- Controller\Home\main : ' . p($this->params, true));
+        exit('<br> -- Controller\Home\main : ' . Dock::p($this->params, true));
     }
 
     function index() {
-        exit('<br> -- Controller\Home\index : ' . p($this->params, true));
+        exit('<br> -- Controller\Home\index : ' . Dock::p($this->params, true));
     }
 
     function other() {
-        exit('<br> -- Controller\Home\other : ' . p($this->params, true));
+        //Salvando no banco de dados com o Model\Access
+        (new Model\Access)->getUserData()->save();
+
+        //Output
+        exit('<br> -- Controller\Home\other : ' . Dock::p($this->params, true));
     }
 
-    function login(){
+    function login(){ 
         $lp = $this->langPath();
         $key = str_replace(["\r", 
                              "\n", 
                              '-----BEGIN PUBLIC KEY-----', 
                              '-----END PUBLIC KEY-----'], 
                              '', 
-                             file_get_contents(¢CONFIG . 'keys/public.key'));
+                             file_get_contents(_CONFIG . 'keys/public.key'));
 
         $d = new Doc\Html('login');
         $d->val('title', 'Zumbi :: Login')

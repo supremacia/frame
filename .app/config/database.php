@@ -1,9 +1,17 @@
 <?php
-
-/*
+/**
+ * Limp - less is more in PHP
+ * @copyright   Bill Rocha - http://google.com/+BillRocha
+ * @license     MIT
+ * @author      Bill Rocha - prbr@ymail.com
+ * @version     0.0.1
+ * @package     Config
+ * @access      public
+ * @since       0.3.0
+ *
  * The MIT License
  *
- * Copyright 2015 googlo.com/+BillRocha.
+ * Copyright 2015 http://google.com/+BillRocha.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +32,28 @@
  * THE SOFTWARE.
  */
 
-//Database settings (PDO connection with dsn+user+password)
-App::dbConnection('mysql', 'mysql:host=localhost;dbname=zumbi;charset=utf8', 'zumbi', 'zumbi#123456');
-App::dbConnection('sysuser', 'mysql:host=localhost;dbname=zumbi;charset=utf8', 'zumbi', 'zumbi#123456');
-App::dbDefault('mysql');
+
+namespace Config;
+
+class Database
+{
+	static $config = ['mysql'=>['dsn'=>'mysql:host=localhost;dbname=zumbi;charset=utf8',
+						 		'user'=>'zumbi',
+						 		'passw'=>'zumbi#123456'
+						 	   ],
+			   		  'sqlite'=>['dsn'=>_CONFIG.'sqlite.db']
+			   		 ];
+	static $default = 'mysql';
+    
+    static function get($alias = null)
+    {
+    	if($alias === null) return static::$config[static::$default];
+    	if(isset(static::$config[$alias])) return static::$config[$alias];
+    	else return false;
+    }
+
+    static function getDefault()
+    {
+    	return static::$default;
+	}
+}
